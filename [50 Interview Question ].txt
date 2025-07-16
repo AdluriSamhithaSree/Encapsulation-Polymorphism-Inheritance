@@ -1,0 +1,152 @@
+[50 Interview Question ]
+
+1. What is encapsulation?
+   Encapsulation is bundling data and methods within a class and hiding internal state using access modifiers (e.g., private fields with public getters/setters).
+
+2. Why is encapsulation important?
+   It protects object state, enhances maintainability, and enforces validation through controlled access.
+
+3. How do you implement encapsulation in Java?
+   Declare fields as private and provide public getter and setter methods.
+
+4. What’s the benefit of getters and setters?
+   They enable controlled access and validation logic before reading or modifying fields.
+
+5. Can encapsulated fields be accessed directly outside the class?
+   No—they can only be accessed via public methods.
+
+6. What happens if a private field has no getter/setter?
+   The field is inaccessible from outside, effectively hiding it.
+
+7. Why use private instead of default access?
+   private restricts access strictly to the class itself, offering stronger encapsulation.
+
+8. What’s wrong with public fields?
+   They expose internals, increase coupling, and remove validation opportunities.
+
+9. How does encapsulation support immutability?
+   By having private fields and no setters, object state becomes unmodifiable after creation.
+
+10. Give a real-world analogy for encapsulation.
+    A bank account class with a private balance and deposit()/withdraw() methods controlling access.
+
+11. Can encapsulation hinder inheritance?
+    Private fields aren't directly accessible in subclasses, though they are inherited and accessible via getters/setters.
+
+12. Can reflection break encapsulation?
+    Technically yes, but best practice treats private as encapsulation protection by design.
+
+13. What is inheritance?
+    It allows a class (subclass) to inherit fields and methods from another class (superclass) using extends.
+
+14. Which keyword is used for inheritance?
+    extends
+
+15. Does Java support multiple inheritance with classes?
+    No, Java avoids the diamond problem by not allowing multiple class inheritance. Interfaces can achieve multiple inheritance.
+
+16. What is multilevel inheritance?
+    A chain where class C inherits from B, which inherits from A.
+
+17. What is hierarchical inheritance?
+    Multiple subclasses inheriting from a single superclass.
+
+18. Can private members be inherited?
+    Yes, but they aren’t accessible in the subclass directly.
+
+19. What’s the role of the super keyword?
+    To access superclass constructors, methods, or hidden members.
+
+20. What is constructor chaining?
+    Using this() for same-class constructor or super() for superclass constructor invocation.
+
+21. What is method overriding?
+    Providing a subclass-specific implementation for a method defined in the superclass.
+
+22. How to override a method in Java?
+    Re-declare the method with the same signature in the subclass, preferably annotated with @Override.
+
+23. Difference between overloading and overriding?
+    Overloading: same method name, different parameters (compile-time). Overriding: same signature in subclass (runtime).
+
+24. Can a subclass override private, static, or final methods?
+    No — private and static methods aren’t inherited; final methods can’t be overridden.
+
+25. What does final mean on a class or method?
+    A final class can’t be extended; a final method can’t be overridden.
+
+26. Difference between abstract class and interface?
+    Abstract class can hold implemented methods and state; interface defines method signatures (and default/static methods since Java 8).
+
+27. Why doesn't Java support class multiple inheritance?
+    To avoid ambiguity (the diamond problem).
+
+28. How is inheritance related to polymorphism?
+    It enables method overriding, which is the basis for runtime polymorphism.
+
+29. Give a real-world inheritance example.
+    Vehicle → Car → ElectricCar; or Shape → Circle/Square.
+
+30. What is polymorphism?
+    “Many forms”—the ability to treat objects differently based on context, via overloading and overriding.
+
+31. Types of polymorphism in Java?
+    – Compile-time (method overloading)
+    – Runtime (method overriding)
+
+32. What is compile-time polymorphism?
+    Binding happens at compile time, e.g., method overloading.
+
+33. What is runtime polymorphism?
+    Binding occurs during runtime, achieved via method overriding.
+
+34. Static vs dynamic binding differences?
+    Static is resolved during compile-time; dynamic is resolved during runtime.
+
+35. What is method overloading?
+    Same method name with different parameters within the same class.
+
+36. What is method overriding?
+    Subclass defines its own version of a superclass method.
+
+37. Can static methods be overridden?
+    No—they can only be hidden.
+
+38. What is covariant return type?
+    A subclass/overridden method may return a subtype of the original return type.
+
+39. Advantages of polymorphism?
+    Offers flexibility, code reuse, ease of maintenance, and interchangeable object behavior.
+
+40. Give an example using interfaces.
+    List list = new ArrayList(); where different implementations provide various behaviors.
+
+41. Explain dynamic binding in Java.
+    JVM selects appropriate method implementation based on the actual object type at runtime.
+
+42. What is static binding?
+    Method resolution happens at compile time—e.g., overloaded or private methods.
+
+43. Why are private methods statically bound?
+    They cannot be overridden, so binding happens during compilation.
+
+44. How does overriding enable runtime polymorphism?
+    JVM redirects calls to overridden methods based on the actual object's class at runtime.
+
+45. Can constructors be overridden?
+    No—constructors aren’t inherited or overridden.
+
+46. Can main() be overloaded?
+    Yes, you can overload main, but JVM executes the signature public static void main(String[] args) only.
+
+47. Overloading vs overriding recap?
+    Overloading: same name, different parameters (compile-time). Overriding: same signature, different implementation (runtime).
+
+48. Example with abstract class?
+    Animal a = new Dog(); a.makeSound(); calls Dog’s implementation.
+
+49. How do interfaces support polymorphism?
+    Multiple classes implement the same interface and can be referenced polymorphically.
+
+50. Define polymorphism in one sentence.
+    The ability of a single reference to behave differently based on the actual object it refers to.

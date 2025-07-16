@@ -1,0 +1,1632 @@
+LEETCODE/HACKERRANK/HACKEREARTH CODING QUESTIONS:
+
+#Inheritance, Polymorphism and Encapsulation#
+
+Q: 
+Using inheritance, one class can acquire the properties of others. Consider the following Animal class:
+
+class Animal{
+    void walk(){
+        System.out.println("I am walking");
+    }
+}
+This class has only one method, walk. Next, we want to create a Bird class that also has a fly method. We do this using extends keyword:
+
+class Bird extends Animal {
+    void fly() {
+        System.out.println("I am flying");
+    }
+}
+Finally, we can create a Bird object that can both fly and walk.
+
+public class Solution{
+   public static void main(String[] args){
+
+      Bird bird = new Bird();
+      bird.walk();
+      bird.fly();
+   }
+}
+The above code will print:
+
+I am walking
+I am flying
+This means that a Bird object has all the properties that an Animal object has, as well as some additional unique properties.
+
+The code above is provided for you in your editor. You must add a sing method to the Bird class, then modify the main method accordingly so that the code prints the following lines:
+
+I am walking
+I am flying
+I am singing
+
+CODE-> 
+// Base class representing an Animal
+class Animal {
+    // Method for walking behavior
+    void walk() {
+        System.out.println("I am walking");
+    }
+}
+
+// Bird class that inherits from Animal
+class Bird extends Animal {
+    // Method for flying behavior unique to Bird
+    void fly() {
+        System.out.println("I am flying");
+    }
+
+    // Additional method for singing behavior unique to Bird
+    void sing() {
+        System.out.println("I am singing");
+    }
+}
+
+// Main class to execute the program
+public class Solution {
+    public static void main(String[] args) {
+        // Creating an object of Bird class
+        Bird bird = new Bird();
+
+        // Bird can walk because it inherits from Animal
+        bird.walk();  // Output: I am walking
+
+        // Bird has its own method to fly
+        bird.fly();   // Output: I am flying
+
+        // Bird has its own method to sing
+        bird.sing();  // Output: I am singing
+    }
+}
+
+********************************************************************************
+
+Q: 
+A class named Arithmetic with a method named add that takes  integers as parameters and returns an integer denoting their sum.
+A class named Adder that inherits from a superclass named Arithmetic.
+Your classes should not be public.
+
+Input Format
+
+You are not responsible for reading any input from stdin; a locked code stub will test your submission by calling the add method on an Adder object and passing it  integer parameters.
+
+Output Format
+
+You are not responsible for printing anything to stdout. Your add method must return the sum of its parameters.
+
+Sample Output
+
+The main method in the Solution class above should print the following:
+
+My superclass is: Arithmetic
+42 13 20
+
+CODE-> // Superclass named Arithmetic
+class Arithmetic {
+    
+    // Method to add two integers
+    int add(int a, int b) {
+        return a + b;
+    }
+}
+
+// Subclass named Adder which inherits from Arithmetic
+class Adder extends Arithmetic {
+    // Inherits the add method from Arithmetic
+    // No need to override unless you want to modify behavior
+}
+
+// Main class with main method
+public class Solution {
+    public static void main(String[] args) {
+        
+        // Create an object of Adder class
+        Adder adder = new Adder();
+
+        // Print the name of the superclass using reflection
+        System.out.println("My superclass is: " + adder.getClass().getSuperclass().getSimpleName());
+
+        // Call the inherited add method with different inputs and print results
+        System.out.println(adder.add(20, 22)); // Should print 42
+        System.out.println(adder.add(10, 3));  // Should print 13
+        System.out.println(adder.add(11, 9));  // Should print 20
+    }
+}
+
+****************************************************************************
+
+Q :
+Create an abstract class named Shape with an abstract method getArea() that returns a double.
+Create two classes that extend Shape: Circle and Rectangle.
+Circle has a radius and returns area as π * r².
+Rectangle has length and breadth and returns area as length * breadth.
+
+Input Format
+You are not responsible for reading input. A locked code stub will create instances of Circle and Rectangle and call the getArea() method.
+
+Output Format
+Return the computed area as a double.
+
+Sample Output
+
+153.93804002589985  
+24.0
+
+CODE-> // Abstract class representing a generic shape
+abstract class Shape {
+    // Abstract method to compute the area of a shape
+    abstract double getArea();
+}
+
+// Class representing a Circle, inheriting from Shape
+class Circle extends Shape {
+    // Radius of the circle
+    private double radius;
+
+    // Constructor to initialize the radius
+    Circle(double radius) {
+        this.radius = radius;
+    }
+
+    // Override getArea to compute the area of a circle
+    @Override
+    double getArea() {
+        // Area = π * r^2
+        return Math.PI * radius * radius;
+    }
+
+    // Optional: Getter method for radius (if needed)
+    double getRadius() {
+        return radius;
+    }
+
+    // Optional: Setter method for radius (if needed)
+    void setRadius(double radius) {
+        this.radius = radius;
+    }
+}
+
+// Class representing a Rectangle, inheriting from Shape
+class Rectangle extends Shape {
+    // Length and breadth of the rectangle
+    private double length;
+    private double breadth;
+
+    // Constructor to initialize length and breadth
+    Rectangle(double length, double breadth) {
+        this.length = length;
+        this.breadth = breadth;
+    }
+
+    // Override getArea to compute the area of a rectangle
+    @Override
+    double getArea() {
+        // Area = length * breadth
+        return length * breadth;
+    }
+
+    // Optional: Getter methods for length and breadth
+    double getLength() {
+        return length;
+    }
+
+    double getBreadth() {
+        return breadth;
+    }
+
+    // Optional: Setter methods
+    void setLength(double length) {
+        this.length = length;
+    }
+
+    void setBreadth(double breadth) {
+        this.breadth = breadth;
+    }
+}
+
+// Main class to demonstrate usage
+public class Solution {
+    public static void main(String[] args) {
+        // Create a Circle with radius 7
+        Shape circle = new Circle(7.0);
+
+        // Create a Rectangle with length 4 and breadth 6
+        Shape rectangle = new Rectangle(4.0, 6.0);
+
+        // Call getArea and print results
+        System.out.println(circle.getArea());     // Expected: 153.93804002589985
+        System.out.println(rectangle.getArea());  // Expected: 24.0
+    }
+}
+
+***********************************************************************
+
+Q :
+You are given two classes, Person and Student, where Person is the base class and Student is the derived class. Completed code for Person and a declaration for Student are provided for you in the editor. Observe that Student inherits all the properties of Person.
+
+Complete the Student class by writing the following:
+
+A Student class constructor, which has  parameters:
+A string, firstName .
+A string, lastName.
+An integer, idNumber.
+An integer array (or vector) of test scores, scores.
+A char calculate() method that calculates a Student object's average and returns the grade character representative of their calculated average:
+
+Grading.png
+
+Input Format
+The locked stub code in the editor reads the input and calls the Student class constructor with the necessary arguments. It also calls the calculate method which takes no arguments.
+The first line contains firstName, lastName,and idNumber, separated by a space. The second line contains the number of test scores. The third line of space-separated integers describes .
+
+Constraints
+I. 1<=length of firstName, length oflastName<=10
+II. length of idNumber=7
+III. 0<=score<=100
+
+Output Format
+Output is handled by the locked stub code. Your output will be correct if your Student class constructor and calculate() method are properly implemented.
+
+Sample Input
+Heraldo Memelli 8135627
+2
+100 80
+
+Sample Output
+Name: Memelli, Heraldo
+ID: 8135627
+Grade: O
+
+Explanation
+This student had 2 scores to average: 100 and 80. The student's average grade is ((100+80)/2)=90 . An average grade of 90 corresponds to the letter grade O, so the calculate() method should return the character'O'.
+
+CODE->
+// Base class
+class Person {
+    private String firstName;
+    private String lastName;
+
+    public Person(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
+}
+
+// Derived class
+class Student extends Person {
+    private int idNumber;
+    private int[] scores;
+
+    public Student(String firstName, String lastName, int idNumber, int[] scores) {
+        super(firstName, lastName);
+        this.idNumber = idNumber;
+        this.scores = scores;
+    }
+
+    public int getIdNumber() {
+        return idNumber;
+    }
+
+    public int[] getScores() {
+        return scores;
+    }
+
+    public char calculate() {
+        int sum = 0;
+        for (int score : scores) {
+            sum += score;
+        }
+        int average = sum / scores.length;
+
+        if (average >= 90 && average <= 100) {
+            return 'O';
+        } else if (average >= 80 && average < 90) {
+            return 'E';
+        } else if (average >= 70 && average < 80) {
+            return 'A';
+        } else if (average >= 55 && average < 70) {
+            return 'P';
+        } else if (average >= 40 && average < 55) {
+            return 'D';
+        } else {
+            return 'T';
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        int[] scores = {100, 80};
+        Student student = new Student("Heraldo", "Memelli", 8135627, scores);
+
+        System.out.println("Name: " + student.getFullName());
+        System.out.println("ID: " + student.getIdNumber());
+        System.out.println("Grade: " + student.calculate());
+    }
+}
+
+************************************************************************
+
+Q : 
+You have a browser of one tab where you start on the homepage and you can visit another url, get back in the history number of steps or move forward in the history number of steps.
+
+Implement the BrowserHistory class:
+
+BrowserHistory(string homepage) Initializes the object with the homepage of the browser.
+void visit(string url) Visits url from the current page. It clears up all the forward history.
+string back(int steps) Move steps back in history. If you can only return x steps in the history and steps > x, you will return only x steps. Return the current url after moving back in history at most steps.
+string forward(int steps) Move steps forward in history. If you can only forward x steps in the history and steps > x, you will forward only x steps. Return the current url after forwarding in history at most steps.
+
+Example:
+
+Input:
+["BrowserHistory","visit","visit","visit","back","back","forward","visit","forward","back","back"]
+[["leetcode.com"],["google.com"],["facebook.com"],["youtube.com"],[1],[1],[1],["linkedin.com"],[2],[2],[7]]
+Output:
+[null,null,null,null,"facebook.com","google.com","facebook.com",null,"linkedin.com","google.com","leetcode.com"]
+
+Explanation:
+BrowserHistory browserHistory = new BrowserHistory("leetcode.com");
+browserHistory.visit("google.com");       // You are in "leetcode.com". Visit "google.com"
+browserHistory.visit("facebook.com");     // You are in "google.com". Visit "facebook.com"
+browserHistory.visit("youtube.com");      // You are in "facebook.com". Visit "youtube.com"
+browserHistory.back(1);                   // You are in "youtube.com", move back to "facebook.com" return "facebook.com"
+browserHistory.back(1);                   // You are in "facebook.com", move back to "google.com" return "google.com"
+browserHistory.forward(1);                // You are in "google.com", move forward to "facebook.com" return "facebook.com"
+browserHistory.visit("linkedin.com");     // You are in "facebook.com". Visit "linkedin.com"
+browserHistory.forward(2);                // You are in "linkedin.com", you cannot move forward any steps.
+browserHistory.back(2);                   // You are in "linkedin.com", move back two steps to "facebook.com" then to "google.com". return "google.com"
+browserHistory.back(7);                   // You are in "google.com", you can move back only one step to "leetcode.com". return "leetcode.com"
+
+Constraints:
+1 <= homepage.length <= 20
+1 <= url.length <= 20
+1 <= steps <= 100
+homepage and url consist of  '.' or lower case English letters.
+At most 5000 calls will be made to visit, back, and forward.
+
+CODE->
+import java.util.ArrayList;
+
+// Base class
+class Browser {
+    protected String currentUrl; // The current URL of the browser
+
+    public Browser(String homepage) {
+        this.currentUrl = homepage; // Initialize with the homepage
+    }
+
+    public String getCurrentUrl() {
+        return currentUrl; // Return the current URL
+    }
+}
+
+// Subclass for Browser History
+class BrowserHistory extends Browser {
+    private ArrayList<String> history; // To store the history of URLs
+    private int currentIndex; // To track the current position in history
+
+    public BrowserHistory(String homepage) {
+        super(homepage); // Call the constructor of the base class
+        history = new ArrayList<>();
+        history.add(homepage); // Initialize history with the homepage
+        currentIndex = 0; // Start at the homepage
+    }
+
+    public void visit(String url) {
+        // Visit a new URL and clear forward history
+        currentIndex++;
+        if (currentIndex < history.size()) {
+            history.set(currentIndex, url); // Replace the current URL with the new one
+        } else {
+            history.add(url); // Add the new URL to the history
+        }
+        // Clear forward history
+        currentUrl = url; // Update current URL
+    }
+
+    public String back(int steps) {
+        // Move back in history
+        currentIndex = Math.max(0, currentIndex - steps); // Ensure we don't go below 0
+        currentUrl = history.get(currentIndex); // Update current URL
+        return currentUrl; // Return the current URL
+    }
+
+    public String forward(int steps) {
+        // Move forward in history
+        currentIndex = Math.min(history.size() - 1, currentIndex + steps); // Ensure we don't go beyond the last index
+        currentUrl = history.get(currentIndex); // Update current URL
+        return currentUrl; // Return the current URL
+    }
+}
+
+// Main class to test the BrowserHistory
+public class Main {
+    public static void main(String[] args) {
+        BrowserHistory browserHistory = new BrowserHistory("leetcode.com");
+        browserHistory.visit("google.com");       // Visit "google.com"
+        browserHistory.visit("facebook.com");     // Visit "facebook.com"
+        browserHistory.visit("youtube.com");      // Visit "youtube.com"
+        System.out.println(browserHistory.back(1)); // "facebook.com"
+        System.out.println(browserHistory.back(1)); // "google.com"
+        System.out.println(browserHistory.forward(1)); // "facebook.com"
+        browserHistory.visit("linkedin.com");     // Visit "linkedin.com"
+        System.out.println(browserHistory.forward(2)); // "linkedin.com" (can't move forward)
+        System.out.println(browserHistory.back(2)); // "google.com"
+        System.out.println(browserHistory.back(7)); // "leetcode.com" (can only go back to homepage)
+    }
+}
+
+**********************************************************************************************************
+
+Q :
+Create a menu with polymorphic dish classes. Each subclass provides its own cost. Return the total bill.
+
+Input Format:
+Dish type (Veg, NonVeg)
+Quantity
+
+Output Format:
+Bill amount
+
+Sample Input:
+NonVeg  
+2
+
+Sample Output:
+Total Bill: ₹400. 
+
+CODE->
+import java.util.*;
+
+// Abstract class representing a generic Dish
+abstract class Dish {
+    protected String name;
+    protected int quantity;
+
+    public Dish(String name, int quantity) {
+        this.name = name;
+        this.quantity = quantity;
+    }
+
+    // Abstract method for calculating price - to be implemented by subclasses
+    public abstract int calculatePrice();
+
+    public String getName() {
+        return name;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+}
+
+// Veg Dish subclass
+class VegDish extends Dish {
+    private final int pricePerUnit = 100;
+
+    public VegDish(String name, int quantity) {
+        super(name, quantity);
+    }
+
+    @Override
+    public int calculatePrice() {
+        return quantity * pricePerUnit;
+    }
+}
+
+// NonVeg Dish subclass
+class NonVegDish extends Dish {
+    private final int pricePerUnit = 200;
+
+    public NonVegDish(String name, int quantity) {
+        super(name, quantity);
+    }
+
+    @Override
+    public int calculatePrice() {
+        return quantity * pricePerUnit;
+    }
+}
+
+// Dessert subclass
+class DessertDish extends Dish {
+    private final int pricePerUnit = 150;
+
+    public DessertDish(String name, int quantity) {
+        super(name, quantity);
+    }
+
+    @Override
+    public int calculatePrice() {
+        return quantity * pricePerUnit;
+    }
+}
+
+// Menu class to display available items
+class Menu {
+    public static void showMenu() {
+        System.out.println("========== MENU ==========");
+        System.out.println("Veg Dishes:         ₹100 per item");
+        System.out.println("Non-Veg Dishes:     ₹200 per item");
+        System.out.println("Desserts:           ₹150 per item");
+        System.out.println("==========================");
+    }
+}
+
+// OrderManager class to process orders and compute bill
+class OrderManager {
+    private List<Dish> orders = new ArrayList<>();
+
+    public void addOrder(Dish dish) {
+        orders.add(dish);
+    }
+
+    public void generateBill() {
+        int total = 0;
+        System.out.println("\n===== ORDER SUMMARY =====");
+        for (Dish dish : orders) {
+            int price = dish.calculatePrice(); // Polymorphic call
+            System.out.println(dish.getQuantity() + " x " + dish.getName() + " = ₹" + price);
+            total += price;
+        }
+        System.out.println("--------------------------");
+        System.out.println("Total Bill: ₹" + total);
+        System.out.println("==========================");
+    }
+}
+
+// Main class
+public class RestaurantBillingSystem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        OrderManager orderManager = new OrderManager();
+
+        Menu.showMenu();
+
+        System.out.print("\nEnter number of items you want to order: ");
+        int items = sc.nextInt();
+        sc.nextLine(); // Consume newline
+
+        for (int i = 0; i < items; i++) {
+            System.out.print("\nEnter Dish Type (Veg/NonVeg/Dessert): ");
+            String type = sc.nextLine();
+
+            System.out.print("Enter Dish Name: ");
+            String name = sc.nextLine();
+
+            System.out.print("Enter Quantity: ");
+            int qty = sc.nextInt();
+            sc.nextLine(); // consume newline
+
+            Dish dish = null;
+
+            switch (type.toLowerCase()) {
+                case "veg":
+                    dish = new VegDish(name, qty);
+                    break;
+                case "nonveg":
+                    dish = new NonVegDish(name, qty);
+                    break;
+                case "dessert":
+                    dish = new DessertDish(name, qty);
+                    break;
+                default:
+                    System.out.println("Invalid dish type. Skipping this item.");
+                    continue;
+            }
+
+            orderManager.addOrder(dish);
+        }
+
+        orderManager.generateBill();
+        sc.close();
+    }
+}
+
+******************************************************
+
+Q :
+You are given a class hierarchy where Animal is the superclass. Each subclass overrides the makeSound() method.
+
+Create the following classes:
+Animal – with a method makeSound() printing "Some sound"
+Dog – extends Animal, override makeSound() to print "Bark"
+Cat – extends Animal, override makeSound() to print "Meow"
+
+Write a program that takes the number of animals and then prints the sound based on the animal type.
+
+Input Format
+First line: An integer N, the number of animals
+Next N lines: Each line contains a string "Dog" or "Cat"
+
+Output Format
+Print the output of makeSound() for each animal on a new line.
+
+Constraints
+1 <= N <= 100
+Only "Dog" or "Cat" as valid input
+
+Sample Input
+3
+Dog
+Cat
+Dog
+
+Sample Output
+Bark
+Meow
+Bark
+
+Sample Code Structure
+
+class Animal {
+    void makeSound() {
+        System.out.println("Some sound");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println("Bark");
+    }
+}
+
+class Cat extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println("Meow");
+    }
+}
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = Integer.parseInt(sc.nextLine());
+        for (int i = 0; i < N; i++) {
+            String type = sc.nextLine();
+            Animal a;
+            if (type.equals("Dog")) {
+                a = new Dog();
+            } else {
+                a = new Cat();
+            }
+            a.makeSound(); // runtime polymorphism
+        }
+    }
+}
+
+*******************************************************
+
+Q :
+You are building an HR system that handles different employee roles.
+Create a class Employee with a method getRole() that returns "Employee".
+Subclasses:
+Manager → overrides getRole() to return "Manager"
+Developer → overrides getRole() to return "Developer"
+Create an array of Employee objects and print the role of each employee.
+
+Input Format
+First line: Integer N, the number of employees
+Next N lines: Each line contains "Manager" or "Developer"
+
+Output Format
+Print getRole() result for each employee
+
+Constraints
+1 ≤ N ≤ 100
+
+Sample Input
+3
+Manager
+Developer
+Manager
+
+Sample Output
+Manager  
+Developer  
+Manager
+
+CODE->
+class Employee {
+    String getRole() {
+        return "Employee";
+    }
+}
+
+class Manager extends Employee {
+    @Override
+    String getRole() {
+        return "Manager";
+    }
+}
+
+class Developer extends Employee {
+    @Override
+    String getRole() {
+        return "Developer";
+    }
+}
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = Integer.parseInt(sc.nextLine());
+
+        Employee[] empList = new Employee[N];
+
+        for (int i = 0; i < N; i++) {
+            String type = sc.nextLine();
+            if (type.equals("Manager")) {
+                empList[i] = new Manager();
+            } else {
+                empList[i] = new Developer();
+            }
+        }
+
+        for (Employee e : empList) {
+            System.out.println(e.getRole());
+        }
+    }
+}
+
+*****************************************************************
+
+Q :
+You are building a media player.
+Create an abstract class Media with a method play()
+Subclasses:
+Song → print "Playing music"
+Movie → print "Playing movie"
+Use a polymorphic method to play all media.
+
+Input Format
+First line: Integer N, number of media items
+Next N lines: each line contains "Song" or "Movie"
+
+Output Format
+Each line prints the media being played
+
+Sample Input
+2
+Song
+Movie
+
+Sample Output
+Playing music  
+Playing movie
+
+CODE->
+abstract class Media {
+    abstract void play();
+}
+
+class Song extends Media {
+    @Override
+    void play() {
+        System.out.println("Playing music");
+    }
+}
+
+class Movie extends Media {
+    @Override
+    void play() {
+        System.out.println("Playing movie");
+    }
+}
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = Integer.parseInt(sc.nextLine());
+
+        Media[] list = new Media[N];
+
+        for (int i = 0; i < N; i++) {
+            String type = sc.nextLine();
+            if (type.equals("Song")) {
+                list[i] = new Song();
+            } else {
+                list[i] = new Movie();
+            }
+        }
+
+        for (Media m : list) {
+            m.play();
+        }
+    }
+}
+
+*************************************************************
+
+Q :
+You need to create a class Adder that has two overloaded methods add():
+One that takes two integers and returns their sum
+Another that takes three integers and returns their sum
+Print the result of calling both methods.
+
+Input Format
+First line: Two integers a and b
+Second line: Three integers x, y, and z
+
+Output Format
+First line: a + b
+Second line: x + y + z
+
+Constraints
+-10^5 <= a, b, x, y, z <= 10^5
+
+Sample Input
+10 20
+1 2 3
+
+Sample Output
+30
+6
+
+CODE->
+class Adder {
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    int add(int a, int b, int c) {
+        return a + b + c;
+    }
+}
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt(), b = sc.nextInt();
+        int x = sc.nextInt(), y = sc.nextInt(), z = sc.nextInt();
+
+        Adder obj = new Adder();
+        System.out.println(obj.add(a, b));
+        System.out.println(obj.add(x, y, z));
+    }
+}
+
+*************************************************************
+
+Q:
+Design a class BankAccount that encapsulates details like account number, account holder name, and balance. Provide methods to deposit, withdraw, and check balance securely.
+
+CODE->
+class BankAccount {
+    private String accountNumber;
+    private String accountHolder;
+    private double balance;
+
+    // Constructor
+    public BankAccount(String accNo, String holder, double initialBalance) {
+        this.accountNumber = accNo;
+        this.accountHolder = holder;
+        this.balance = initialBalance;
+    }
+
+    // Public getter (read-only)
+    public String getAccountHolder() {
+        return accountHolder;
+    }
+
+    // Public method to deposit money
+    public void deposit(double amount) {
+        if (amount > 0)
+            balance += amount;
+    }
+
+    // Public method to withdraw money
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= balance)
+            balance -= amount;
+    }
+
+    // Public method to check balance
+    public double getBalance() {
+        return balance;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        BankAccount acc = new BankAccount("123456", "Alice", 1000.0);
+        acc.deposit(500.0);
+        acc.withdraw(200.0);
+        System.out.println("Balance for " + acc.getAccountHolder() + ": " + acc.getBalance());
+    }
+}
+
+***************************************************************************
+
+Q:
+Write a Java program to create a class called Vehicle with a method called drive(). Create a subclass called Car that overrides the drive() method to print "Repairing a car".
+
+CODE-> 
+// Define the parent class Vehicle
+class Vehicle {
+
+    // Define a public method named drive
+    public void drive() {
+
+        // Print "Repairing a vehicle" to the console
+        System.out.println("Repairing a vehicle");
+    }
+} 
+
+
+// Define the child class Car that extends Vehicle
+class Car extends Vehicle {
+    // Use the @Override annotation to indicate that this method overrides a method in the superclass
+
+    @Override
+    // Define the drive method
+
+    public void drive() {
+
+        // Print "Repairing a car" to the console
+        System.out.println("Repairing a car");
+    }
+} 
+
+
+// Define the main class
+public class Main {
+
+    // Define the main method
+    public static void main(String[] args) {
+
+        // Create an instance of Vehicle
+        Vehicle vehicle = new Vehicle();
+
+        // Create an instance of Car
+        Car car = new Car();
+
+        // Call the drive method on the vehicle instance
+        vehicle.drive(); // Output: Repairing a vehicle
+
+        // Call the drive method on the car instance
+        car.drive(); // Output: Repairing a car
+    }
+}
+
+*********************************************************
+
+Q:
+Write a Java program to create a class called Employee with methods called work() and getSalary(). Create a subclass called HRManager that overrides the work() method and adds a new method called addEmployee().
+
+CODE->
+// Employee.java
+// Parent class Employee
+public class Employee {
+
+    // Private field to store the salary of the employee
+    private int salary;
+
+    // Constructor to initialize the salary of the employee
+    public Employee(int salary) {
+        this.salary = salary;
+    }
+
+    // Method to simulate the employee working
+    public void work() {
+        // Print a message indicating the employee is working
+        System.out.println("working as an employee!");
+    }
+
+    // Getter method to retrieve the salary of the employee
+    public int getSalary() {
+        return salary;
+    }
+} 
+
+// HRManager.java
+// Child class HRManager
+public class HRManager extends Employee {
+
+    // Constructor to initialize the salary of the HRManager
+    public HRManager(int salary) {
+        // Call the parent class constructor with the salary
+        super(salary);
+    }
+
+    // Overridden method to simulate the HRManager working
+    public void work() {
+        // Print a message indicating the HRManager is managing employees
+        System.out.println("\nManaging employees");
+    }
+
+    // Method to simulate adding a new employee
+    public void addEmployee() {
+        // Print a message indicating a new employee is being added
+        System.out.println("\nAdding new employee!");
+    }
+}
+// Main.java
+// Main class
+public class Main {
+
+    // Main method
+    public static void main(String[] args) {
+        // Create an Employee object with a salary of 40000
+        Employee emp = new Employee(40000);
+
+        // Create an HRManager object with a salary of 70000
+        HRManager mgr = new HRManager(70000);
+
+        // Call the work method on the Employee object
+        emp.work();
+
+        // Print the salary of the Employee object
+        System.out.println("Employee salary: " + emp.getSalary());
+
+        // Call the work method on the HRManager object
+        mgr.work();
+
+        // Print the salary of the HRManager object
+        System.out.println("Manager salary: " + mgr.getSalary());
+
+        // Call the addEmployee method on the HRManager object
+        mgr.addEmployee();
+    }
+}
+
+*************************************************************
+
+Q: 
+Given an encoded string, return its decoded string. The encoding rule is: k[encoded_string], where the encoded_string inside the square brackets is being repeated exactly k times. Note that k is guaranteed to be a positive integer. You may assume that the input string is always valid; there are no extra white spaces, square brackets are well-formed, etc. Furthermore, you may assume that the original data does not contain any digits and that digits are only for those repeat numbers, k. For example, there will not be input like 3a or 2[4].
+
+Example 1:
+Input: s = "3[a]2[bc]"
+Output: "aaabcbc"
+
+Example 2:
+Input: s = "3[a2[c]]"
+Output: "accaccacc"
+
+CODE-> 
+class Solution {
+    // Private variable to keep track of the current index in the string
+    private int index = 0;
+
+    // Public method to decode an encoded string
+    public String decodeString(String s) {
+        index = 0; // Reset index for each new decoding
+        return decodeHelper(s);
+    }
+
+    // Private helper method to perform the decoding using recursion
+    private String decodeHelper(String s) {
+        StringBuilder result = new StringBuilder();
+        int repeatCount = 0;
+
+        while (index < s.length()) {
+            char currentChar = s.charAt(index);
+
+            if (Character.isDigit(currentChar)) {
+                // Build the repeat count (could be more than one digit)
+                repeatCount = repeatCount * 10 + (currentChar - '0');
+            } 
+			else if (currentChar == '[') {
+                index++; // Move past the '['
+                String innerDecoded = decodeHelper(s); // Recursively decode the substring
+                // Append the decoded substring repeatCount times
+                for (int i = 0; i < repeatCount; i++) {
+                    result.append(innerDecoded);
+                }
+                repeatCount = 0; // Reset repeat count
+            } 
+			else if (currentChar == ']') {
+                // End of the current recursive call
+                break;
+            } 
+			else {
+                // Regular character, just append
+                result.append(currentChar);
+            }
+            index++; // Move to the next character
+        }
+        return result.toString();
+    }
+}
+
+*********************************************************************
+
+Q: 
+Write a Java program to create a class called Employee with private instance variables employee_id, employee_name and employee_salary. Provide public getter and setter methods to access and modify the id and name variables, but provide a getter method for the salary variable that returns a formatted string.
+
+CODE-> 
+// Employee.java
+
+// Employee Class
+class Employee {
+
+  // Declare a private int variable for employee_id
+  private int employee_id;
+
+  // Declare a private String variable for employee_name
+  private String employee_name;
+
+  // Declare a private double variable for employee_salary
+  private double employee_salary;
+
+  // Getter method for employee_id
+  public int getEmployeeId() {
+    return employee_id;
+  }
+
+  // Setter method for employee_id
+  public void setEmployeeId(int employeeId) {
+    this.employee_id = employeeId;
+  }
+
+  // Getter method for employee_name
+  public String getEmployeeName() {
+    return employee_name;
+  }
+
+  // Setter method for employee_name
+  public void setEmployeeName(String employeeName) {
+    this.employee_name = employeeName;
+  }
+
+  // Getter method for employee_salary
+  public double getEmployeeSalary() {
+    return employee_salary;
+  }
+
+  // Setter method for employee_salary
+  public void setEmployeeSalary(double employeeSalary) {
+    this.employee_salary = employeeSalary;
+  }
+
+  // Method to get formatted salary as a String
+  public String getFormattedSalary() {
+    return String.format("$%.2f", employee_salary);
+  }
+} 
+
+// Main.java
+// Main Class
+
+public class Main {
+    public static void main(String[] args) {
+        // Create an instance of Employee
+        Employee employee = new Employee();
+
+        // Set values using setter methods
+        employee.setEmployeeId(15);
+        employee.setEmployeeName("Caelius Dathan");
+        employee.setEmployeeSalary(4900.0);
+
+        // Get values using getter methods
+        int employeeId = employee.getEmployeeId();
+        String employeeName = employee.getEmployeeName();
+        String formattedSalary = employee.getFormattedSalary();
+
+        // Print the values
+		System.out.println("Employee Details:");
+        System.out.println("ID: " + employeeId);
+        System.out.println("Name: " + employeeName);
+        System.out.println("Salary: " + formattedSalary);
+    }
+}
+
+***************************************************************
+
+Q:
+Your task is to create a Person class in Java that demonstrates encapsulation. This class should have two private attributes: name( String ) and age( int ) whose default values should be name as "Geeks" and age as 10. The class should provide public getter and setter methods to access and modify these private attributes. Note: In custom test cases Person() should be written first and in setName('name') function write the name is single quotes.
+	
+CODE->	 
+// Person.java
+
+// Person Class
+class Person {
+    // Private variables for name and age
+    private String name;
+    private int age;
+
+    // Default constructor
+    Person() {
+        this.name = "Geeks";
+        this.age = 10;
+    }
+
+    // Getter method for name
+    public String getName() {
+        return this.name;
+    }
+
+    // Setter method for name
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // Getter method for age
+    public int getAge() {
+        return this.age;
+    }
+
+    // Setter method for age
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        // Custom test case: Create Person object
+        Person person = new Person();
+
+        // Set name using single quotes (as per input spec)
+        person.setName("‘John’"); // Using actual single quotes inside string
+
+        // Set age
+        person.setAge(25);
+
+        // Output
+        System.out.println("Name: " + person.getName());
+        System.out.println("Age: " + person.getAge());
+    }
+}
+
+
+****************************************************************************
+
+Q:
+Design a stack that supports push, pop, top, and retrieving the minimum element in constant time. Implement the MinStack class:
+MinStack() initializes the stack object.
+void push(int val) pushes the element val onto the stack.
+void pop() removes the element on the top of the stack.
+int top() gets the top element of the stack.
+int getMin() retrieves the minimum element in the stack.
+You must implement a solution with O(1) time complexity for each function.
+
+CODE-> 
+// MinStack.java
+
+import java.util.Stack;
+
+// MinStack Class
+class MinStack {
+    // Private stacks for storing values and minimums
+    private Stack<Integer> stack;
+    private Stack<Integer> minStack;
+
+    // Private variable to keep track of the current minimum
+    private int minValue;
+
+    // Constructor to initialize the stacks and minValue
+    public MinStack() {
+        stack = new Stack<>();
+        minStack = new Stack<>();
+        minValue = Integer.MAX_VALUE;
+    }
+
+    // Method to push a value onto the stack
+    public void push(int val) {
+        stack.push(val);
+        // If the new value is less than or equal to the current minimum, push it onto minStack
+        if (minStack.isEmpty() || val <= minStack.peek()) {
+            minStack.push(val);
+        }
+    }
+
+    // Method to remove the top value from the stack
+    public void pop() {
+        // If the value being popped is the current minimum, pop it from minStack as well
+        if (!stack.isEmpty()) {
+            int removed = stack.pop();
+            if (!minStack.isEmpty() && removed == minStack.peek()) {
+                minStack.pop();
+            }
+        }
+    }
+
+    // Method to get the top value of the stack
+    public int top() {
+        return stack.peek();
+    }
+
+    // Method to get the current minimum value in the stack
+    public int getMin() {
+        return minStack.peek();
+    }
+}
+
+**********************************************************************
+
+Q:
+Objective:
+Design a bank account system to store account number, account holder name, and balance securely. Use encapsulation to protect data and provide operations like deposit and withdrawal through methods only.
+
+Class: BankAccount
+Fields: accountNumber, holderName, balance (all private)
+
+Methods:
+Constructor to initialize all fields
+deposit(double amount)
+withdraw(double amount)
+getAccountNumber(), getHolderName(), getBalance()
+toString()
+
+CODE->
+package com.encapsulation.case1;
+
+public class BankAccount {
+    private int accountNumber;
+    private String holderName;
+    private double balance;
+
+    public BankAccount(int accountNumber, String holderName, double balance) {
+        this.accountNumber = accountNumber;
+        this.holderName = holderName;
+        this.balance = balance;
+    }
+
+    public int getAccountNumber() {
+        return accountNumber;
+    }
+
+    public String getHolderName() {
+        return holderName;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void deposit(double amount) {
+        if (amount > 0)
+            balance += amount;
+    }
+
+    public boolean withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Account[Number=" + accountNumber + ", Name=" + holderName + ", Balance=" + balance + "]";
+    }
+}
+
+******************************************************************************
+
+Q: 
+Objective:
+Develop an employee management system where name, designation, and salary are stored using encapsulation. Salary must not be accessible directly and should include validation logic.
+
+Class: Employee
+Fields: empId, name, designation, salary
+
+Methods:
+Constructor to initialize all
+setSalary(double salary) → Validate > 0
+getters for all fields
+toString()
+
+CODE->
+package com.encapsulation.case2;
+
+public class Employee {
+    private int empId;
+    private String name;
+    private String designation;
+    private double salary;
+
+    public Employee(int empId, String name, String designation, double salary) {
+        this.empId = empId;
+        this.name = name;
+        this.designation = designation;
+        setSalary(salary);
+    }
+
+    public int getEmpId() {
+        return empId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDesignation() {
+        return designation;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        if (salary > 0)
+            this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee[Id=" + empId + ", Name=" + name + ", Designation=" + designation + ", Salary=" + salary + "]";
+    }
+}
+
+*************************************************************************
+
+Q:
+Objective:
+Create a system to manage books in a library. Encapsulate data such as title, author, and price. Ensure price can't be set below a certain value.
+
+Class: Book
+Fields: isbn, title, author, price
+
+Methods:
+Constructor with all fields
+Setter for price with validation (> 0)
+toString()
+
+CODE->
+package com.encapsulation.case3;
+
+public class Book {
+    private String isbn;
+    private String title;
+    private String author;
+    private double price;
+
+    public Book(String isbn, String title, String author, double price) {
+        this.isbn = isbn;
+        this.title = title;
+        this.author = author;
+        setPrice(price);
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        if (price > 0)
+            this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Book[ISBN=" + isbn + ", Title=" + title + ", Author=" + author + ", Price=" + price + "]";
+    }
+}
+
+***********************************************************************
+
+Q: 
+Objective:
+Create a vehicle class where speed should be controlled only through methods (not directly). Encapsulation ensures safe speed changes.
+
+Class: Vehicle
+Fields: model, speed (private)
+
+Methods:
+accelerate(int increment)
+brake(int decrement)
+getSpeed(), getModel()
+toString()
+
+CODE->
+package com.encapsulation.case4;
+
+public class Vehicle {
+    private String model;
+    private int speed;
+
+    public Vehicle(String model) {
+        this.model = model;
+        this.speed = 0;
+    }
+
+    public void accelerate(int increment) {
+        if (increment > 0)
+            speed += increment;
+    }
+
+    public void brake(int decrement) {
+        if (decrement > 0 && speed >= decrement)
+            speed -= decrement;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicle[Model=" + model + ", Speed=" + speed + "]";
+    }
+}
+
+******************************************************************
+
+Q:
+Objective:
+Create an inventory system where product ID, name, quantity, and price are encapsulated. Quantity cannot be negative.
+
+Class: Product
+Fields: productId, name, price, quantity
+
+Methods:
+Constructor
+Setter for quantity with validation
+Getter methods
+toString()
+
+CODE->
+package com.encapsulation.case5;
+
+public class Product {
+    private int productId;
+    private String name;
+    private double price;
+    private int quantity;
+
+    public Product(int productId, String name, double price, int quantity) {
+        this.productId = productId;
+        this.name = name;
+        this.price = price;
+        setQuantity(quantity);
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        if (quantity >= 0)
+            this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "Product[Id=" + productId + ", Name=" + name + ", Price=" + price + ", Quantity=" + quantity + "]";
+    }
+}
+
+
+
+
+
+
+
+
+
